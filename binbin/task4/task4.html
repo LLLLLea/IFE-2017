@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task4</title>
+	<style type="text/css">
+	#number div{
+		display:inline-block;
+		margin-top:10px;
+		margin-right: 5px;
+		height: 0;
+		cursor:pointer;
+		background-color:#ff0000;
+		color:#ffffff;
+	}
+	</style>
+</head>
+<body>
+	<input type="text" id="txt"/>
+	<button id="lin">左侧入</button>
+	<button id="rin" style="margin-right:30px">右侧入</button>
+	<button id="lout">左侧出</button>
+	<button id="rout">右侧出</button>
+	<div id="number"></div>
+
+	<script>
+		var text = document.getElementById("txt");  //获取input输入值
+		var blin = document.getElementById("lin");
+		var brin = document.getElementById("rin");
+		var blout = document.getElementById("lout");
+		var brout = document.getElementById("rout");
+		var num = document.getElementById("number");
+		blin.onclick = function(){
+			if(text.value == "" || isNaN(text.value))
+				alert("Please input a integer!");
+			else
+			{
+				var newnode = document.createElement("div");
+				newnode.innerHTML=text.value;
+				num.insertBefore(newnode,num.firstChild);  //插入到左边第一个节点
+			}
+		}
+		brin.onclick = function(){
+			if(text.value == "" || isNaN(text.value))
+				alert("Please input a integer!");
+			else
+			{
+				var newnode = document.createElement("div");
+				newnode.innerHTML=text.value;
+				num.insertBefore(newnode,null);  //插入到左边第一个节点
+			}
+		}
+		blout.onclick = function(){
+			var delnum = num.firstChild;
+			alert("Now Delete" + delnum.innerHTML);
+			num.removeChild(delnum);
+		}
+		brout.onclick = function(){
+			var delnum = num.lastChild;
+			alert("Now Delete" + delnum.innerHTML);
+			num.removeChild(delnum);
+		}
+		num.addEventListener("click",function(e){
+			if(event.target.nodeName.toLowerCase() == 'div')
+				num.removeChild(event.target);
+		});
+	</script>
+</body>
+</html>

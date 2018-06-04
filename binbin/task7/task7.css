@@ -1,0 +1,27 @@
+.root,.second,.third,.forth{
+	border:1px solid blue;
+	display: flex;
+	flex-direction:row;
+	align-items:center;
+	margin:0 auto;
+}
+.root{
+	height:550px;
+	width:1200px;
+}
+.second{
+	height:400px;
+	width:500px;
+}
+.third{
+	height:150px;
+	width:200px;
+}
+.forth{
+	height:50px;
+	width:80px;
+}
+.center{
+	width:300px;
+	margin:20px auto;
+}

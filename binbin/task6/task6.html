@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task6</title>
+	<style type="text/css">
+	.center{
+		width:600px;
+		height:600px;
+		margin:60px auto;
+	}
+	#number div{
+		display:inline-block;
+		margin-top:10px;
+		margin-right: 5px;
+		font-size:50px;
+		height:60px;
+		width:60px;
+		cursor:pointer;
+		background-color:red;
+		color:#ffffff;
+	}
+	body > div{
+		margin-top:10px;
+	}
+	</style>
+</head>
+<body>
+<div class="center">
+	<div>
+		<textarea id="txt"></textarea>
+		<button id="lin">左侧入</button>
+		<button id="rin" style="margin-right:30px">右侧入</button>
+		<button id="lout">左侧出</button>
+		<button id="rout">右侧出</button>
+	</div>
+	<div>
+		<input id="searchNum"></input>
+		<button id="search">查询</button>
+	</div> 
+	<div id="number"></div>
+</div>
+	<script  type="text/javascript">
+		var text = document.getElementsByTagName("textarea");
+		var blin = document.getElementById("lin");
+		var brin = document.getElementById("rin");
+		var blout = document.getElementById("lout");
+		var brout = document.getElementById("rout");
+		var searchNum = document.getElementById("searchNum");
+		var bsearch = document.getElementById("search");
+		var num = document.getElementById("number");	
+		//获取textarea输入值
+		var arr = function(){
+			var texts = text[0].value; 
+			texts = texts.replace(/[^0-9a-zA-Z]/g," ");
+			var arry = texts.split(" ");
+			return arry;
+		}
+		blin.onclick = function(){
+			for(var i=0;i<arr().length;i++){
+				var newnode = document.createElement("div");
+				newnode.innerHTML = arr()[i];
+				num.insertBefore(newnode,num.firstChild);  //插入到左边第一个节点
+			}
+		}
+		brin.onclick = function(){
+			for(var i=0;i<arr().length;i++){
+				var newnode = document.createElement("div");
+				newnode.innerHTML=arr()[i];
+				num.insertBefore(newnode,null);  //插入到左边第一个节点
+			}
+		}
+		blout.onclick = function(){
+			var delnum = num.firstChild;
+			num.removeChild(delnum);
+		}
+		brout.onclick = function(){
+			var delnum = num.lastChild;
+			num.removeChild(delnum);
+		}
+		bsearch.onclick = function(){
+			var keyword = searchNum.value;
+			var list = num.getElementsByTagName("div");
+			for(var i=0;i<list.length;i++){
+				var contains = list[i].innerHTML;
+				if( contains.indexOf(keyword)>-1 ){
+					list[i].style.backgroundColor = "yellow";
+				}
+				else
+					list[i].style.backgroundColor = "red";
+			}
+		}
+	</script>
+</body>
+</html>
